@@ -13,13 +13,12 @@ Implementing multi-stage deployment pipeline with comprehensive monitoring infra
 
 ### Deployment Pipeline
 - **Development Environment**
-  - Automated deployments
-  - Integration testing
+  - Automatic deployment from develop branch
+  - Integration testing environment
 
 - **Production Environment**
-  - Manual promotion
-  - Blue-green deployment
-  - Rollback capability
+  - Manual deployemnt after merging to main
+  - Basic health checks
 
 ### Monitoring Stack
 - **Prometheus**
@@ -72,7 +71,7 @@ Implementing multi-stage deployment pipeline with comprehensive monitoring infra
 
 ## Success Criteria
 
-1. Automated deployments working in both environments
+1. Deployements as described earleir working in dev/prod environment
 2. Git flow process implemented and documented
 3. Monitoring dashboards showing real-time metrics
 4. Alert system responding to incidents
