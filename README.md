@@ -53,7 +53,7 @@ A fully managed relational database service for MySQL, PostgreSQL, and SQL Serve
 ### Tableau/Looker:
 Provides visualization layers for stakeholders to interact with the processed data via dashboards and reports.
 
-~~- ### Terraform: ~~
+ ### Terraform:
 ~~- Automates the provisioning of the infrastructure components (e.g., GCS buckets, Big Query datasets, Kubernetes clusters).~~
 
 ## Example Pipeline Steps
