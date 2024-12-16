@@ -17,7 +17,7 @@ This project aims to build a robust, scalable, and efficient data processing and
 - Tableau or Looker: The transformed data is visualized in Tableau/Looker, providing insights through dashboards and reports.
 
 ### 4. Infrastructure Management:
-- Terraform: Provisions the Google Cloud resources, including GCS, Big Query, IAM roles, and networking configurations, ensuring reproducibility and compliance.
+~~- Terraform: Provisions the Google Cloud resources, including GCS, Big Query, IAM roles, and networking configurations, ensuring reproducibility and compliance.~~
 
 ### 5. CI/CD Pipeline:
 - Source control using GitHub repository
@@ -53,8 +53,8 @@ A fully managed relational database service for MySQL, PostgreSQL, and SQL Serve
 ### Tableau/Looker:
 Provides visualization layers for stakeholders to interact with the processed data via dashboards and reports.
 
-### Terraform:
-Automates the provisioning of the infrastructure components (e.g., GCS buckets, Big Query datasets, Kubernetes clusters).
+~~- ### Terraform: ~~
+~~- Automates the provisioning of the infrastructure components (e.g., GCS buckets, Big Query datasets, Kubernetes clusters).~~
 
 ## Example Pipeline Steps
 1. Data Ingestion: Prefect detects new data (from Parquet Files or GCS).
@@ -70,3 +70,63 @@ Automates the provisioning of the infrastructure components (e.g., GCS buckets, 
 
 ## Architecture Diagram
 ![Architecture Diagram](./architecture_diagram.png)
+
+## ProjectMilestones
+
+### Phase 1: Basic Setup (Erik Laki)
+#### Infrastructure Setup
+- [ ] Set up Google Cloud environment
+- [ ] Configure basic Kubernetes cluster
+- [ ] Create GitHub repository
+- [ ] Implement basic CI/CD pipeline
+- [ ] Create and test first Docker container
+
+#### Deliverables:
+* Working Kubernetes cluster
+* Basic CI/CD pipeline
+* Initial Docker container
+
+### Phase 2: Data Pipeline 
+#### Data Ingestion Setup
+- [ ] Configure GCS bucket
+- [ ] Implement Parquet file reading
+- [ ] Create basic data transformations
+- [ ] Set up BigQuery connection
+
+#### Deliverables:
+* Working data ingestion flow
+* Basic data transformation pipeline
+* Data storage structure
+
+### Phase 3: Processing & Storage 
+#### Data Processing Implementation
+- [ ] Implement core data transformations
+- [ ] Configure Cloud SQL
+- [ ] Create processing pipeline
+- [ ] Test complete data flow
+
+#### Deliverables:
+* Functional transformation pipeline
+* Working database structure
+* Verified data processing
+
+### Phase 4: Visualization & Completion
+#### Final Implementation
+- [ ] Set up Tableau/Looker connection
+- [ ] Create main dashboard
+- [ ] Complete documentation
+- [ ] Final testing and presentation
+
+#### Deliverables:
+* Working dashboard
+* Complete documentation
+* Final presentation
+
+## Technology Stack
+* Google Cloud Platform
+* Kubernetes
+* Docker
+* BigQuery
+* Cloud SQL
+* Tableau/Looker
+* GitHub Actions (CI/CD)
