@@ -69,7 +69,8 @@ Provides visualization layers for stakeholders to interact with the processed da
 - Insightful Analytics: Tableau/Looker provides actionable insights.# Cloud-Native Data Processing and Visualization Pipeline
 
 ## Dataset
-We have decided yet, but we can use any dataset to visualize the data (e.g. Weather data from some areas etc ...)
+We have decided yet, but we can use any dataset to transform and visualize the data. (e.g. Weather data in multiple cities)
+
 
 ## Architecture Diagram
 ![Architecture Diagram](./proposal.png)
