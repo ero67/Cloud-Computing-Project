@@ -1,6 +1,6 @@
 # Cloud-Native Data Processing and Visualization Pipeline
 
-This project aims to build a robust, scalable, and efficient data processing and visualization pipeline leveraging modern cloud-native technologies. The system will process raw data (from Parquet files), transform it, store it in a centralized cloud storage and load it into data warehouse (Google Big Query) and do transformations using DBT (might not use it), and enable data visualization using Tableau or Looker. The infrastructure will be provisioned and managed using Terraform, ensuring consistent, repeatable deployments.
+This project aims to build a robust, scalable, and efficient data processing and visualization pipeline leveraging modern cloud-native technologies. The system will process raw data (from Parquet files), transform it, store it in a centralized cloud storage and load it into data warehouse (Google Big Query) and do transformations using DBT (might not use it), and enable data visualization using Tableau or Looker.
 
 ## Workflow
 
@@ -67,6 +67,9 @@ Provides visualization layers for stakeholders to interact with the processed da
 - Resilience: Kubernetes and Docker ensure the system is fault tolerant.
 - Automation: Terraform automates infrastructure provisioning and management.
 - Insightful Analytics: Tableau/Looker provides actionable insights.# Cloud-Native Data Processing and Visualization Pipeline
+
+## Dataset
+We have decided yet, but we can use any dataset to visualize the data (e.g. Weather data from some areas etc ...)
 
 ## Architecture Diagram
 ![Architecture Diagram](./architecture_diagram.png)
