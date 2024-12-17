@@ -72,7 +72,7 @@ Provides visualization layers for stakeholders to interact with the processed da
 We have decided yet, but we can use any dataset to visualize the data (e.g. Weather data from some areas etc ...)
 
 ## Architecture Diagram
-![Architecture Diagram](./architecture_diagram.png)
+![Architecture Diagram](./proposal.png)
 
 ## ProjectMilestones
 
