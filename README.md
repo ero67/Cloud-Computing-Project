@@ -86,7 +86,7 @@ Provides visualization layers for stakeholders to interact with the processed da
 * Basic CI/CD pipeline
 * Initial Docker container
 
-### Phase 2: Data Pipeline 
+### Phase 2: Data Pipeline (Saddam Mughal)
 #### Data Ingestion Setup
 - [ ] Configure GCS bucket
 - [ ] Implement Parquet file reading
@@ -98,7 +98,7 @@ Provides visualization layers for stakeholders to interact with the processed da
 * Basic data transformation pipeline
 * Data storage structure
 
-### Phase 3: Processing & Storage 
+### Phase 3: Processing & Storage  (Muhammad Zeeshan Nazar)
 #### Data Processing Implementation
 - [ ] Implement core data transformations
 - [ ] Configure Cloud SQL
@@ -110,7 +110,7 @@ Provides visualization layers for stakeholders to interact with the processed da
 * Working database structure
 * Verified data processing
 
-### Phase 4: Visualization & Completion
+### Phase 4: Visualization & Completion (Dominik Zauner)
 #### Final Implementation
 - [ ] Set up Tableau/Looker connection
 - [ ] Create main dashboard
