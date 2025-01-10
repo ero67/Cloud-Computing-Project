@@ -68,6 +68,9 @@ kubectl apply -k k8s/base
 kubectl get all -n data-pipeline
 ```
 
+## Access to Prefect Server locally
+To access prefect server locally run `kubectl port-forward service/prefect-server -n data-pipeline 4200:4200`
+
 ## Service Account and Permissions
 
 The infrastructure uses a GCP service account with the following roles:
