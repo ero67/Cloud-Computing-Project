@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pipeline-config
+  namespace: data-pipeline
+data:
+  GCS_BUCKET: "data-pipeline-storage"  # You'll need to change this to your actual bucket name
+  BIGQUERY_DATASET: "pipeline_data"    # You'll need to change this to your actual dataset name

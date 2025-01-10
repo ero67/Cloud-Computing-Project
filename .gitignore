@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+venv/
+ENV/
+.env
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# GCP
+key.json
+*.json
+!package.json
+
+# Miscellaneous
+.DS_Store
+*.log
+logs/
+tmp/
+.coverage
+htmlcov/

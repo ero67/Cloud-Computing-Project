@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prefect-agent
+  namespace: data-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prefect-agent
+  template:
+    metadata:
+      labels:
+        app: prefect-agent
+    spec:
+      containers:
+      - name: prefect-agent
+        image: prefecthq/prefect:2-latest
+        command: ["prefect", "agent", "start", "-q", "default"]
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+        env:
+        - name: PREFECT_API_URL
+          value: "http://prefect-server:4200/api"
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: "/var/secrets/google/key.json"
+        volumeMounts:
+        - name: gcp-key
+          mountPath: "/var/secrets/google"
+          readOnly: true
+      volumes:
+      - name: gcp-key
+        secret:
+          secretName: gcp-sa-key
