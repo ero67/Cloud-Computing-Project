@@ -3,12 +3,12 @@ name: Infrastructure Validation
 on:
   push:
     paths:
-      - 'k8s/**'
+      - 'pipeline-project/k8s/**'
     branches:
       - main
   pull_request:
     paths:
-      - 'k8s/**'
+      - 'pipeline-project/k8s/**'
 
 jobs:
   validate:
@@ -31,8 +31,8 @@ jobs:
 
       - name: Validate with kubeval
         run: |
-          kubeval --strict k8s/base/*.yaml
+          kubeval --strict pipeline-project/k8s/base/*.yaml
 
       - name: Validate with kubeconform
         run: |
-          kubeconform -strict k8s/base/*.yaml
+          kubeconform -strict pipeline-project/k8s/base/*.yaml
