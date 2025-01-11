@@ -8,5 +8,6 @@ RUN pip install google-cloud-storage \
 
 # Copy test script
 COPY test_gcp.py .
+COPY test_storage.py .
 
-CMD ["python", "test_gcp.py"]
+CMD ["python", "test_storage.py"]

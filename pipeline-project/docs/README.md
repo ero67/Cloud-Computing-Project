@@ -234,3 +234,7 @@ class DataTransformer:
 - Location: `src/visualization/`
 - Purpose: Create dashboards and visualizations
 - Store dashboard configurations in `dashboards/` directory
+
+
+## GCS Bucket name
+`data-pipeline-parquet-teak-gamma-442315-f8`
