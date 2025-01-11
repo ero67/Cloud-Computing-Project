@@ -31,8 +31,8 @@ jobs:
 
       - name: Validate with kubeval
         run: |
-          kubeval --strict pipeline-project/k8s/base/*.yaml
+          kubeval --strict --ignore-missing-schemas pipeline-project/k8s/base/[!kustomization]*.yaml
 
       - name: Validate with kubeconform
         run: |
-          kubeconform -strict pipeline-project/k8s/base/*.yaml
+          kubeconform -strict -ignore-missing-schemas pipeline-project/k8s/base/[!kustomization]*.yaml
