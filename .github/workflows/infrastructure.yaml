@@ -1,0 +1,38 @@
+name: Infrastructure Validation
+
+on:
+  push:
+    paths:
+      - 'k8s/**'
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'k8s/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install kubeval
+        run: |
+          wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+          tar xf kubeval-linux-amd64.tar.gz
+          sudo mv kubeval /usr/local/bin
+
+      - name: Install kubeconform
+        run: |
+          wget https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz
+          tar xf kubeconform-linux-amd64.tar.gz
+          sudo mv kubeconform /usr/local/bin
+
+      - name: Validate with kubeval
+        run: |
+          kubeval --strict k8s/base/*.yaml
+
+      - name: Validate with kubeconform
+        run: |
+          kubeconform -strict k8s/base/*.yaml

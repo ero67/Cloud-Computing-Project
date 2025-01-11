@@ -16,7 +16,10 @@ spec:
       containers:
       - name: prefect-agent
         image: prefecthq/prefect:2-latest
-        command: ["prefect", "agent", "start", "-q", "default"]
+        command: ["prefect", "worker", "start", "-p", "default-agent-pool", "-t", "process"]  # Updated to use worker instead of agent
+        env:
+        - name: PREFECT_API_URL
+          value: "http://prefect-server:4200/api"
         resources:
           requests:
             memory: "256Mi"
@@ -24,16 +27,3 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
-        env:
-        - name: PREFECT_API_URL
-          value: "http://prefect-server:4200/api"
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: "/var/secrets/google/key.json"
-        volumeMounts:
-        - name: gcp-key
-          mountPath: "/var/secrets/google"
-          readOnly: true
-      volumes:
-      - name: gcp-key
-        secret:
-          secretName: gcp-sa-key

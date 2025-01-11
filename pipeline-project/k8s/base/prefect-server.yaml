@@ -17,6 +17,7 @@ spec:
       - name: prefect-server
         image: prefecthq/prefect:2-latest
         command: ["prefect", "server", "start"]
+        args: ["--host", "0.0.0.0"]
         ports:
         - containerPort: 4200
 ---
