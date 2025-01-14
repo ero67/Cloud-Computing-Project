@@ -1,5 +1,3 @@
-# terraform/modules/storage/main.tf
-
 resource "google_storage_bucket" "data_pipeline_bucket" {
   name     = var.bucket_name
   location = var.bucket_location

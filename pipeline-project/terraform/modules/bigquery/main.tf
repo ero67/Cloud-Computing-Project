@@ -1,5 +1,3 @@
-# terraform/modules/bigquery/main.tf
-
 resource "google_bigquery_dataset" "pipeline_dataset" {
   dataset_id  = var.dataset_id
   location    = var.dataset_location
