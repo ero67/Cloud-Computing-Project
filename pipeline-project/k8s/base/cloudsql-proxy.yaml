@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudsql-proxy
+  namespace: data-pipeline
+spec:
+  selector:
+    matchLabels:
+      app: cloudsql-proxy
+  template:
+    metadata:
+      labels:
+        app: cloudsql-proxy
+    spec:
+      containers:
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:latest
+          command:
+            - "/cloud_sql_proxy"
+            - "-instances=teak-gamma-442315-f8:us-central1:data-pipeline-4039b51c=tcp:0.0.0.0:5432"
+          volumeMounts:
+            - name: gcp-key
+              mountPath: /var/secrets/google
+              readOnly: true
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
+          ports:
+            - containerPort: 5432
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: "200m"
+              memory: "200Mi" 
+      volumes:
+        - name: gcp-key
+          secret:
+            secretName: gcp-sa-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudsql-proxy
+  namespace: data-pipeline
+spec:
+  selector:
+    app: cloudsql-proxy
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

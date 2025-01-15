@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: connection-test-pod
+  namespace: data-pipeline
+spec:
+  containers:
+  - name: connection-test
+    image: ero67/connection-test:latest
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "50m"
+      limits:
+        memory: "256Mi"
+        cpu: "100m"
+    env:
+    - name: GOOGLE_APPLICATION_CREDENTIALS
+      value: "/var/secrets/google/key.json"
+    - name: DB_HOST
+      value: "cloudsql-proxy"
+    - name: DB_PORT
+      value: "5432"
+    - name: DB_NAME
+      valueFrom:
+        secretKeyRef:
+          name: cloudsql-credentials
+          key: database
+    - name: DB_USER
+      valueFrom:
+        secretKeyRef:
+          name: cloudsql-credentials
+          key: username
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: cloudsql-credentials
+          key: password
+    volumeMounts:
+    - name: gcp-key
+      mountPath: "/var/secrets/google"
+      readOnly: true
+  volumes:
+  - name: gcp-key
+    secret:
+      secretName: gcp-sa-key
+  restartPolicy: Never

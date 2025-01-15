@@ -1,13 +1,13 @@
-FROM python:3.9-slim
+FROM python:3.9.5-slim
 
 WORKDIR /app
 
-# Install required packages
+# Install Python packages
 RUN pip install google-cloud-storage \
-    google-cloud-bigquery
+    google-cloud-bigquery \
+    psycopg2-binary
 
 # Copy test script
-COPY test_gcp.py .
-COPY test_storage.py .
+COPY test_connections.py .
 
-CMD ["python", "test_storage.py"]
+CMD ["python", "test_connections.py"]
