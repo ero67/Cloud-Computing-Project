@@ -6,3 +6,5 @@ resources:
   - prefect-server.yaml
   - prefect-agent.yaml
   - config.yaml
+  - cloudsql-proxy.yaml
+  - cloudsql-secret.yaml

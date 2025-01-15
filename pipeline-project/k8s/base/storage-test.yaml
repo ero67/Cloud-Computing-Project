@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: storage-test
-    image: ero67/gcp-test:latest  # Your existing image
+    image: ero67/gcp-test:latest 
     resources:
       requests:
         memory: "256Mi"

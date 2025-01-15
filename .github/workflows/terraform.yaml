@@ -19,6 +19,7 @@ on:
 env:
   TF_WORKSPACE: "dev"
   GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+  TF_VAR_db_password: ${{ secrets.TF_VAR_db_password }}
 
 jobs:
   terraform:

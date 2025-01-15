@@ -1,3 +1,4 @@
+# k8s/base/prefect-agent.yaml (updated version)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,10 +17,29 @@ spec:
       containers:
       - name: prefect-agent
         image: prefecthq/prefect:2-latest
-        command: ["prefect", "worker", "start", "-p", "default-agent-pool", "-t", "process"]  # Updated to use worker instead of agent
+        command: ["prefect", "worker", "start", "-p", "default-agent-pool", "-t", "process"]
         env:
         - name: PREFECT_API_URL
           value: "http://prefect-server:4200/api"
+        - name: DB_HOST
+          value: "cloudsql-proxy"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-credentials
+              key: database
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-credentials
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-credentials
+              key: password
         resources:
           requests:
             memory: "256Mi"

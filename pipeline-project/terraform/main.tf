@@ -32,3 +32,12 @@ module "bigquery" {
   dataset_id = "data_pipeline"
   dataset_location = var.region
 }
+
+module "cloudsql" {
+  source = "./modules/cloudsql"
+  
+  project_id  = var.project_id
+  region      = var.region
+  db_user     = var.db_user
+  db_password = var.db_password
+}

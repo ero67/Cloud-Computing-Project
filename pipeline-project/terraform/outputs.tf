@@ -13,3 +13,11 @@ output "bigquery_dataset_id" {
 output "bigquery_table_id" {
   value = module.bigquery.table_id
 }
+
+output "cloudsql_instance_name" {
+  value = module.cloudsql.instance_name
+}
+
+output "cloudsql_connection_name" {
+  value = module.cloudsql.connection_name
+}
