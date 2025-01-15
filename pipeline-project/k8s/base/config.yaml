@@ -4,5 +4,7 @@ metadata:
   name: pipeline-config
   namespace: data-pipeline
 data:
-  GCS_BUCKET: "data-pipeline-storage"
-  BIGQUERY_DATASET: "pipeline_data"
+  GCS_BUCKET: "data-pipeline-parquet-teak-gamma-442315-f8"
+  BIGQUERY_DATASET: "data_pipeline"
+  CLOUDSQL_CONNECTION_NAME: "teak-gamma-442315-f8:us-central1:data-pipeline-4039b51c"
+  GCP_PROJECT_ID: "teak-gamma-442315-f8"

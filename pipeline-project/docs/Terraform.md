@@ -97,4 +97,4 @@ Infrastructure changes are managed through a GitHub Actions workflow that:
      - High availability: disabled
      - Connection name: `teak-gamma-442315-f8:us-central1:data-pipeline-4039b51c`
 
-Example of connection to database can be found in src/ingestion/tests/test_connections.py
+Example of connections to these resources can be found in src/ingestion/tests/test_connections.py
