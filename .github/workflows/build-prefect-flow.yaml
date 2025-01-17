@@ -16,7 +16,7 @@ on:
       - 'Dockerfile'
       - 'requirements.txt'
       - '.github/workflows/build-prefect-flow.yml'
-
+  workflow_dispatch:
 env:
   PROJECT_ID: teak-gamma-442315-f8
 
