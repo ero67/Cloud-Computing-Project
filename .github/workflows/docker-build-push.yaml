@@ -1,26 +1,20 @@
+# .github/workflows/build-prefect-flow.yml
 name: Build and Push Prefect Flow Image
 
 on:
   push:
     branches: 
       - main
-      - integration-of-prefect-flow
     paths:
-      - 'flows/**'
-      - 'Dockerfile'
-      - 'requirements.txt'
+      - 'pipeline-project/src/processing/**'
       - '.github/workflows/docker-build-push.yml'
   pull_request:
     branches:
       - main
-      - integration-of-prefect-flow
     paths:
-      - 'flows/**'
-      - 'Dockerfile'
-      - 'requirements.txt'
+      - 'pipeline-project/src/processing/**'
       - '.github/workflows/docker-build-push.yml'
 
-  workflow_dispatch:
 env:
   PROJECT_ID: teak-gamma-442315-f8
 
@@ -47,6 +41,7 @@ jobs:
         gcloud auth configure-docker
 
     - name: Build and Push Docker image
+      working-directory: pipeline-project/src/processing
       run: |
         docker build -t gcr.io/${{ env.PROJECT_ID }}/taxi-flow:latest .
         docker push gcr.io/${{ env.PROJECT_ID }}/taxi-flow:latest
