@@ -1,0 +1,60 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: taxi-data-flow-job
+  namespace: data-pipeline
+spec:
+  template:
+    spec:
+      containers:
+      - name: taxi-flow
+        image: gcr.io/teak-gamma-442315-f8/taxi-flow:latest
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+        env:
+        - name: PREFECT_API_URL
+          value: "http://prefect-server:4200/api"
+        - name: CLOUDSQL_CONNECTION_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-config
+              key: CLOUDSQL_CONNECTION_NAME
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-credentials
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-credentials
+              key: password
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-credentials
+              key: database
+        - name: GCS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-config
+              key: GCS_BUCKET
+        volumeMounts:
+        - name: gcp-key
+          mountPath: "/var/secrets/google"
+          readOnly: true
+        - name: temp-storage
+          mountPath: "/app/Archive"
+      volumes:
+      - name: gcp-key
+        secret:
+          secretName: gcp-sa-key
+      - name: temp-storage
+        emptyDir: {}
+      restartPolicy: Never
+  backoffLimit: 0

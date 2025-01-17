@@ -1,3 +1,4 @@
+# prefect-server.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,14 +16,16 @@ spec:
     spec:
       containers:
       - name: prefect-server
-        image: prefecthq/prefect:2-latest
+        image: prefecthq/prefect:3.1.12-python3.9-kubernetes
         command: ["prefect", "server", "start"]
         args: ["--host", "0.0.0.0"]
         env:
         - name: PREFECT_SERVER_API_HOST
           value: "0.0.0.0"
-        - name: PREFECT_UI_API_URL
+        - name: PREFECT_API_URL
           value: "http://prefect-server:4200/api"
+        - name: PREFECT_UI_API_URL
+          value: "http://localhost:4200/api"
         ports:
         - containerPort: 4200
         resources:
@@ -32,3 +35,15 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prefect-server
+  namespace: data-pipeline
+spec:
+  selector:
+    app: prefect-server
+  ports:
+  - port: 4200
+    targetPort: 4200

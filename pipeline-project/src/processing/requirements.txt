@@ -1,0 +1,11 @@
+prefect==3.1.12
+prefect-kubernetes>=0.5.3
+pandas
+requests
+google-cloud-storage
+google-cloud-bigquery
+sqlalchemy 
+pyarrow
+cloud-sql-python-connector
+pg8000
+griffe

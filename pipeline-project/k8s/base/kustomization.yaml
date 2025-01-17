@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - prefect-server.yaml
-  - prefect-agent.yaml
+  - prefect-worker.yaml
   - config.yaml
   - cloudsql-proxy.yaml
   - cloudsql-secret.yaml
+  - taxi-data-processing-job.yaml
