@@ -20,6 +20,7 @@ on:
       - 'requirements.txt'
       - '.github/workflows/docker-build-push.yml'
 
+  workflow_dispatch:
 env:
   PROJECT_ID: teak-gamma-442315-f8
 
