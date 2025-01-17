@@ -6,7 +6,8 @@ metadata:
 spec:
   containers:
   - name: connection-test
-    image: ero67/connection-test:latest
+    image: gcr.io/teak-gamma-442315-f8/connection-tester:latest
+    imagePullPolicy: Always
     resources:
       requests:
         memory: "128Mi"
