@@ -1,22 +1,25 @@
-# .github/workflows/build-prefect-flow.yml
 name: Build and Push Prefect Flow Image
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - integration-of-prefect-flow
     paths:
       - 'flows/**'
       - 'Dockerfile'
       - 'requirements.txt'
       - '.github/workflows/build-prefect-flow.yml'
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - integration-of-prefect-flow
     paths:
       - 'flows/**'
       - 'Dockerfile'
       - 'requirements.txt'
       - '.github/workflows/build-prefect-flow.yml'
-  workflow_dispatch:
+
 env:
   PROJECT_ID: teak-gamma-442315-f8
 
