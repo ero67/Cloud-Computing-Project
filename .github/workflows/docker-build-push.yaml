@@ -9,7 +9,7 @@ on:
       - 'flows/**'
       - 'Dockerfile'
       - 'requirements.txt'
-      - '.github/workflows/build-prefect-flow.yml'
+      - '.github/workflows/docker-build-push.yml'
   pull_request:
     branches:
       - main
@@ -18,7 +18,7 @@ on:
       - 'flows/**'
       - 'Dockerfile'
       - 'requirements.txt'
-      - '.github/workflows/build-prefect-flow.yml'
+      - '.github/workflows/docker-build-push.yml'
 
 env:
   PROJECT_ID: teak-gamma-442315-f8
