@@ -37,30 +37,42 @@ def test_cloudsql_connection():
         db_user = os.getenv("DB_USER")
         db_pass = os.getenv("DB_PASSWORD")
         db_name = os.getenv("DB_NAME")
-
+        
+        # Add debugging
+        logger.info(f"Connection details (redacted):")
+        logger.info(f"Instance name: {instance_name}")
+        logger.info(f"DB name: {db_name}")
+        logger.info(f"DB user: {'*' * len(db_user) if db_user else None}")
+        
+        if not all([instance_name, db_user, db_pass, db_name]):
+            raise ValueError("Missing required environment variables")
+        
         connector = Connector()
         def getconn():
-            return connector.connect(
+            conn = connector.connect(
                 instance_name,
                 "pg8000",
                 user=db_user,
                 password=db_pass,
                 db=db_name
             )
-
+            return conn
+            
         engine = sqlalchemy.create_engine(
             "postgresql+pg8000://",
             creator=getconn
         )
-
+        
         # Test connection by executing a simple query
         with engine.connect() as conn:
-            conn.execute(sqlalchemy.text("SELECT 1"))
-        
+            result = conn.execute(sqlalchemy.text("SELECT 1"))
+            logger.info(f"Query result: {result.scalar()}")
+       
         logger.info("Successfully connected to Cloud SQL")
         return True
     except Exception as e:
-        logger.error(f"Failed to connect to Cloud SQL: {e}")
+        logger.error(f"Failed to connect to Cloud SQL: {str(e)}")
+        logger.error(f"Error type: {type(e)}")
         return False
 
 def main():

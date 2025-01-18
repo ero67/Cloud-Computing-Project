@@ -16,6 +16,11 @@ spec:
         memory: "256Mi"
         cpu: "100m"
     env:
+    - name: CLOUDSQL_CONNECTION_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: pipeline-config
+          key: CLOUDSQL_CONNECTION_NAME
     - name: GOOGLE_APPLICATION_CREDENTIALS
       value: "/var/secrets/google/key.json"
     - name: DB_HOST

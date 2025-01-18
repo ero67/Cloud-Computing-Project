@@ -12,14 +12,23 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
-            memory: "512Mi"
+            memory: "1Gi"
             cpu: "200m"
+          limits:
+            memory: "2Gi"
+            cpu: "400m"
         env:
         - name: PREFECT_API_URL
           value: "http://prefect-server:4200/api"
+        - name: PREFECT_LOGGING_LEVEL
+          value: "DEBUG"
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        # Add these two environment variables
+        - name: DB_HOST
+          value: "cloudsql-proxy"
+        - name: DB_PORT
+          value: "5432"
         - name: CLOUDSQL_CONNECTION_NAME
           valueFrom:
             configMapKeyRef:
