@@ -12,7 +12,8 @@ k8s_job = KubernetesJob(
         "apiVersion": "batch/v1",
         "kind": "Job",
         "metadata": {
-            "namespace": "data-pipeline"
+            "namespace": "data-pipeline",
+            "generateName": "taxi-data-flow-"
         },
         "spec": {
             "template": {
