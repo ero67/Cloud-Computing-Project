@@ -13,8 +13,8 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
 
 # Create directory for temporary file storage
 RUN mkdir -p /Archive
@@ -22,12 +22,12 @@ RUN mkdir -p /Archive
 # Set Prefect configuration
 RUN prefect config set PREFECT_API_URL="http://prefect-server:4200/api"
 
-# Copy source code
-COPY flows/deploy.py .
-COPY flows/taxi_data_flow.py .
+# Copy source code to root directory, just like kubectl cp does
+COPY flows/deploy.py /deploy.py
+COPY flows/taxi_data_flow.py /taxi_data_flow.py
 
 # Command to run the flow
-CMD ["python", "deploy.py"]
+CMD ["python", "/deploy.py"]
 # FROM python:3.9.5-slim
 
 # # Set working directory

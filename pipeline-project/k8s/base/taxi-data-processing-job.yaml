@@ -52,7 +52,7 @@ spec:
           mountPath: "/var/secrets/google"
           readOnly: true
         - name: temp-storage
-          mountPath: "/app/Archive"
+          mountPath: "/Archive"
       volumes:
       - name: gcp-key
         secret:
