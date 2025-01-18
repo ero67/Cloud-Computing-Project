@@ -43,6 +43,8 @@ spec:
             secretKeyRef:
               name: cloudsql-credentials
               key: password
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: "/var/secrets/google/key.json"
         resources:
           requests:
             memory: "256Mi"
@@ -50,3 +52,11 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
+        volumeMounts:
+        - name: gcp-key
+          mountPath: "/var/secrets/google"
+          readOnly: true
+      volumes:
+      - name: gcp-key
+        secret:
+          secretName: gcp-sa-key

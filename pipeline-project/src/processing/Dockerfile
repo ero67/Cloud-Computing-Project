@@ -5,9 +5,6 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PREFECT_API_URL="http://prefect-server:4200/api"
 
-# Set working directory
-WORKDIR /app
-
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -17,12 +14,10 @@ RUN apt-get update && \
 
 # Copy requirements first for better caching
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Create directory for temporary file storage
-RUN mkdir -p /app/Archive
+RUN mkdir -p /Archive
 
 # Set Prefect configuration
 RUN prefect config set PREFECT_API_URL="http://prefect-server:4200/api"
@@ -30,11 +25,6 @@ RUN prefect config set PREFECT_API_URL="http://prefect-server:4200/api"
 # Copy source code
 COPY flows/deploy.py .
 COPY flows/taxi_data_flow.py .
-
-# Create non-root user and switch to it
-RUN useradd -m -u 1000 prefect
-RUN chown -R prefect:prefect /app
-USER prefect
 
 # Command to run the flow
 CMD ["python", "deploy.py"]
