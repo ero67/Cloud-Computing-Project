@@ -81,7 +81,8 @@ k8s_job = KubernetesJob(
 deployment = NY_Taxi_Data_Flow.to_deployment(
     name="taxi-data-flow",
     work_pool_name="k8s-pool",
-    work_queue_name="default"
+    work_queue_name="default",
+    job= k8s_job
 )
 
 if __name__ == "__main__":
