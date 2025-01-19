@@ -13,7 +13,7 @@ deployment = NY_Taxi_Data_Flow.to_deployment(
     work_queue_name="default",
     tags=["taxi-data", "k8s"],
     description="NY Taxi Data Processing Flow",
-    enforce_parameter_schema=False  # Add this to make debugging easier
+    enforce_parameter_schema=False 
 )
 
 if __name__ == "__main__":

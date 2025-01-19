@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: prefect-worker
-        image: prefecthq/prefect:3.1.12-python3.9-kubernetes
+        image: gcr.io/teak-gamma-442315-f8/taxi-flow:latest
         command: ["prefect", "worker", "start"]
         args: ["-p", "k8s-pool"]
         env:
@@ -43,6 +43,11 @@ spec:
             secretKeyRef:
               name: cloudsql-credentials
               key: password
+        - name: GCS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: pipeline-config
+              key: GCS_BUCKET
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: "/var/secrets/google/key.json"
         resources:
