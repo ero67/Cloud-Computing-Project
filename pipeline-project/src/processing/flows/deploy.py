@@ -3,21 +3,23 @@ from prefect import flow
 from prefect_kubernetes.jobs import KubernetesJob
 from taxi_data_flow import NY_Taxi_Data_Flow
 
-# Set environment variable for deployment creation
-os.environ["PREFECT_API_URL"] = "http://prefect-server:4200/api"
+print(f"Current working directory: {os.getcwd()}")
+print(f"Files in current directory: {os.listdir('/')}")
 
 # Create deployment
 deployment = NY_Taxi_Data_Flow.to_deployment(
     name="taxi-data-flow",
     work_pool_name="k8s-pool",
     work_queue_name="default",
-    path="/taxi_data_flow.py"  # Add this line to specify the absolute path
+    tags=["taxi-data", "k8s"],
+    description="NY Taxi Data Processing Flow",
+    enforce_parameter_schema=False  # Add this to make debugging easier
 )
 
 if __name__ == "__main__":
     print("Registering flow deployment with Prefect server...")
     deployment.apply()
-    print("Flow deployment registered successfully!")
+    print(f"Flow deployment registered successfully from {os.path.abspath(__file__)}")
 # import os
 # from prefect import serve
 # from prefect_kubernetes.jobs import KubernetesJob
