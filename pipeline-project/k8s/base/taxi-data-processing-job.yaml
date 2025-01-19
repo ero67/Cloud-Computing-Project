@@ -10,15 +10,7 @@ spec:
       - name: taxi-flow
         image: gcr.io/teak-gamma-442315-f8/taxi-flow:latest
         imagePullPolicy: Always
-        command: ["python"]
-        args: [deploy.py]
-        resources:
-          requests:
-            memory: "1Gi"
-            cpu: "200m"
-          limits:
-            memory: "2Gi"
-            cpu: "400m"
+        command: ["python", "deploy.py"]
         env:
         - name: PREFECT_API_URL
           value: "http://prefect-server:4200/api"
@@ -26,37 +18,6 @@ spec:
           value: "DEBUG"
         - name: PYTHONUNBUFFERED
           value: "1"
-        - name: DB_HOST
-          value: "cloudsql-proxy"
-        - name: DB_PORT
-          value: "5432"
-        - name: CLOUDSQL_CONNECTION_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: pipeline-config
-              key: CLOUDSQL_CONNECTION_NAME
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              name: cloudsql-credentials
-              key: username
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: cloudsql-credentials
-              key: password
-        - name: DB_NAME
-          valueFrom:
-            secretKeyRef:
-              name: cloudsql-credentials
-              key: database
-        - name: GCS_BUCKET
-          valueFrom:
-            configMapKeyRef:
-              name: pipeline-config
-              key: GCS_BUCKET
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/secrets/google/key.json
         volumeMounts:
         - name: gcp-key
           mountPath: "/var/secrets/google"
@@ -70,4 +31,4 @@ spec:
       - name: temp-storage
         emptyDir: {}
       restartPolicy: Never
-  backoffLimit: 0
+  backoffLimit: 2
