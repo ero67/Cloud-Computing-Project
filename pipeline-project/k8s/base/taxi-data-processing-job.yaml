@@ -26,7 +26,6 @@ spec:
           value: "DEBUG"
         - name: PYTHONUNBUFFERED
           value: "1"
-        # Add these two environment variables
         - name: DB_HOST
           value: "cloudsql-proxy"
         - name: DB_PORT

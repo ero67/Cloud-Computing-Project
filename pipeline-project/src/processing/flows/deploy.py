@@ -10,12 +10,13 @@ os.environ["PREFECT_API_URL"] = "http://prefect-server:4200/api"
 deployment = NY_Taxi_Data_Flow.to_deployment(
     name="taxi-data-flow",
     work_pool_name="k8s-pool",
-    work_queue_name="default"
+    work_queue_name="default",
+    path="/taxi_data_flow.py"  # Add this line to specify the absolute path
 )
 
 if __name__ == "__main__":
     print("Registering flow deployment with Prefect server...")
-    deployment.apply()  # Just register and exit
+    deployment.apply()
     print("Flow deployment registered successfully!")
 # import os
 # from prefect import serve
