@@ -10,6 +10,8 @@ spec:
       - name: taxi-flow
         image: gcr.io/teak-gamma-442315-f8/taxi-flow:latest
         imagePullPolicy: Always
+        command: ["python"]
+        args: [deploy.py]
         resources:
           requests:
             memory: "1Gi"

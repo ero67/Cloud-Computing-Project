@@ -27,7 +27,7 @@ COPY flows/deploy.py /deploy.py
 COPY flows/taxi_data_flow.py /taxi_data_flow.py
 
 # Command to run the flow
-CMD ["python", "/deploy.py"]
+# CMD ["python", "/deploy.py"]
 # FROM python:3.9.5-slim
 
 # # Set working directory
