@@ -32,23 +32,29 @@ graph TD
         GCS[GCS Raw]
         BQ
         SQL
+        
+        %% Looker Integration
+        BQ -->|Query Data| LK[Looker]
+        LK -->|Visualize| DB[Dashboards]
     end
    
     %% Infrastructure Management
     TF -->|Create| GCS
     TF -->|Create| BQ
     TF -->|Create| SQL
-
+    
     %% Data Flow
     classDef gcp fill:#4285F4,stroke:#333,stroke-width:2px,color:white;
     classDef k8s fill:#326CE5,stroke:#333,stroke-width:2px,color:white;
     classDef github fill:#24292E,stroke:#333,stroke-width:2px,color:white;
     classDef flow fill:#00DB8B,stroke:#333,stroke-width:2px,color:black;
+    classDef visualization fill:#FF69B4,stroke:#333,stroke-width:2px,color:white;
    
     class GCS,BQ,SQL,GKE gcp;
     class PS,PW k8s;
     class GH,GA github;
     class PF flow;
+    class LK,DB visualization;
 ```
 ```
 .
