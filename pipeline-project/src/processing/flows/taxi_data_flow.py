@@ -64,16 +64,27 @@ def insert_into_cloud_sql(df, table_name):
     db_pass = os.getenv("DB_PASSWORD")
     db_name = os.getenv("DB_NAME")
 
+    print(f"Attempting to connect to database: {db_name}")
+    print(f"Instance name: {instance_name}")
+    print(f"Table name to be created: {table_name}")
+    print(f"DataFrame shape: {df.shape}")
+    
     connector = Connector()
 
     def getconn():
-        return connector.connect(
-            instance_name,
-            "pg8000",
-            user=db_user,
-            password=db_pass,
-            db=db_name,
-        )
+        try:
+            conn = connector.connect(
+                instance_name,
+                "pg8000",
+                user=db_user,
+                password=db_pass,
+                db=db_name,
+            )
+            print("Successfully established database connection")
+            return conn
+        except Exception as e:
+            print(f"Connection error: {str(e)}")
+            raise
 
     engine = sqlalchemy.create_engine(
         "postgresql+pg8000://",
@@ -81,12 +92,73 @@ def insert_into_cloud_sql(df, table_name):
     )
 
     try:
+        # First verify connection with a simple query
+        with engine.connect() as connection:
+            result = connection.execute(sqlalchemy.text("SELECT current_database(), current_user"))
+            db, user = result.fetchone()
+            print(f"Connected to database: {db} as user: {user}")
+            
+        print("Starting data insertion...")
         df.to_sql(table_name, engine, if_exists='replace', index=False)
-        print(f"Data inserted into Cloud SQL table {table_name}.")
+        
+        # Verify the table was created
+        with engine.connect() as connection:
+            result = connection.execute(
+                sqlalchemy.text(
+                    "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name = :table"
+                ),
+                {"table": table_name}
+            )
+            table_exists = result.scalar()
+            print(f"Table existence check: {table_exists > 0}")
+            
+            if table_exists > 0:
+                # Get row count
+                result = connection.execute(
+                    sqlalchemy.text(f"SELECT COUNT(*) FROM {table_name}")
+                )
+                row_count = result.scalar()
+                print(f"Inserted {row_count} rows into table {table_name}")
+        
+        print(f"Data insertion completed successfully")
     except Exception as e:
-        print(f"Error inserting data into Cloud SQL: {e}")
+        print(f"Error during database operations: {str(e)}")
+        raise
+    finally:
+        engine.dispose()
     
     return table_name
+
+# @task(name="insert_into_cloud_sql")
+# def insert_into_cloud_sql(df, table_name):
+#     instance_name = os.getenv("CLOUDSQL_CONNECTION_NAME")
+#     db_user = os.getenv("DB_USER")
+#     db_pass = os.getenv("DB_PASSWORD")
+#     db_name = os.getenv("DB_NAME")
+
+#     connector = Connector()
+
+#     def getconn():
+#         return connector.connect(
+#             instance_name,
+#             "pg8000",
+#             user=db_user,
+#             password=db_pass,
+#             db=db_name,
+#         )
+
+#     engine = sqlalchemy.create_engine(
+#         "postgresql+pg8000://",
+#         creator=getconn,
+#     )
+
+#     try:
+#         df.to_sql(table_name, engine, if_exists='replace', index=False)
+#         print(f"Data inserted into Cloud SQL table {table_name}.")
+#     except Exception as e:
+#         print(f"Error inserting data into Cloud SQL: {e}")
+    
+#     return table_name
 
 @task(name="load_parquet_to_bigquery")
 def load_parquet_to_bigquery(gcs_uri, project_id, dataset_id, table_id):
