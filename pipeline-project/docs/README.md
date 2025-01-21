@@ -398,3 +398,32 @@ After research of how to use **Prefect** Kubernetes infrastructure we managed to
 2. After deployment is done, user runs the flow for Prefect server UI running in our Kubernetes pod
 3. Worker processes request for running the flow and creates temporary Kubernetes job which runs the flow
 4. Flow is configured to always pull image from our GCR container registry and runs in the temporary pod created by the job.
+
+## Summary of Lessons Learned
+
+### Key Technical Learnings
+1. **Kubernetes & Prefect Integration**
+  - Self-hosted Prefect requires careful configuration of worker and server communication
+  - Proper roles for service accounts and secret management is crucial for secure operation
+  - Work pool configuration is essential for successful flow execution
+
+2. **Infrastructure Management**
+  - Terraform automation through GitHub Actions ensures consistent deployments
+  - Breaking infrastructure into modules (storage, database, compute) improves maintainability
+
+3. **CI/CD Pipeline**
+  - Automated validation prevents misconfiguration
+  - Regular testing of infrastructure changes reduces deployment issues
+  - Keeping secrets secure while maintaining automation requires careful planning
+
+### What Worked Well
+- Using GKE for orchestration
+- Implementing infrastructure as code
+- Automating deployments with GitHub Actions
+- Self-hosting Prefect for better control
+
+## Possible future improvements
+- Implement monitoring (via Grafana)
+- CI/CD Pipeline for running kubernetes commands and deployments could be added
+- More testing
+- Automatic work-pool creation via kubernetes
