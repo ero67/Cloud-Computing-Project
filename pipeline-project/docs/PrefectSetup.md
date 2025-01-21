@@ -92,12 +92,14 @@ The flow processes taxi data through several tasks:
 2. **Deploy Flow**
    ```python
    # deploy.py
-   deployment = NY_Taxi_Data_Flow.to_deployment(
-       name="taxi-data-flow",
-       work_pool_name="k8s-pool",
-       work_queue_name="default"
-   )
-   deployment.apply()
+    deployment = NY_Taxi_Data_Flow.to_deployment(
+        name="taxi-data-flow",
+        work_pool_name="k8s-pool",
+        work_queue_name="default"
+    )
+    
+    # Deploy the flow
+    deployment.apply()
    ```
 
 ## Kubernetes Configuration

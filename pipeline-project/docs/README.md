@@ -74,7 +74,6 @@ You can now use kubernetes on our cluster from your local shell
 
 ### GCP Resources
 The infrastructure is managed through Terraform and includes:
-- Google Kubernetes Engine (GKE) cluster
 - Cloud SQL instance
 - BigQuery datasets
 - Google Cloud Storage buckets
