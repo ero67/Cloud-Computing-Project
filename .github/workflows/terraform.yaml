@@ -14,7 +14,7 @@ on:
   pull_request:
     paths:
       - 'pipeline-project/terraform/**'
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch:
 
 env:
   TF_WORKSPACE: "dev"

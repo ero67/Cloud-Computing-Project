@@ -79,46 +79,46 @@ We have decided yet, but we can use any dataset to transform and visualize the d
 
 ### Phase 1: Basic Setup (Erik Laki)
 #### Infrastructure Setup
-- [ ] Set up Google Cloud environment
-- [ ] Configure basic Kubernetes cluster
-- [ ] Create GitHub repository
-- [ ] Implement basic CI/CD pipeline
-- [ ] Create and test first Docker container
+- [ ] Set up Google Cloud environment ✔
+- [ ] Configure basic Kubernetes cluster✔
+- [ ] Create GitHub repository✔
+- [ ] Implement basic CI/CD pipeline✔
+- [ ] Create and test first Docker container✔
 
 #### Deliverables:
-* Working Kubernetes cluster
-* Basic CI/CD pipeline
-* Initial Docker container
+* Working Kubernetes cluster✔
+* Basic CI/CD pipeline✔
+* Initial Docker container✔
 
 ### Phase 2: Data Pipeline (Saddam Mughal)
 #### Data Ingestion Setup
-- [ ] Configure GCS bucket
-- [ ] Implement Parquet file reading
-- [ ] Create basic data transformations
-- [ ] Set up BigQuery connection
+- [ ] Configure GCS bucket✔
+- [ ] Implement Parquet file reading✔
+- [ ] Create basic data transformations✔
+- [ ] Set up BigQuery connection✔
 
 #### Deliverables:
-* Working data ingestion flow
-* Basic data transformation pipeline
-* Data storage structure
+* Working data ingestion flow✔
+* Basic data transformation pipeline✔
+* Data storage structure✔
 
 ### Phase 3: Processing & Storage  (Muhammad Zeeshan Nazar)
 #### Data Processing Implementation
-- [ ] Implement core data transformations
+- [ ] Implement core data transformations✔
 - [ ] Configure Cloud SQL
-- [ ] Create processing pipeline
-- [ ] Test complete data flow
+- [ ] Create processing pipeline✔
+- [ ] Test complete data flow✔
 
 #### Deliverables:
-* Functional transformation pipeline
+* Functional transformation pipeline✔
 * Working database structure
-* Verified data processing
+* Verified data processing✔
 
 ### Phase 4: Visualization & Completion (Dominik Zauner)
 #### Final Implementation
 - [ ] Set up Tableau/Looker connection
 - [ ] Create main dashboard
-- [ ] Complete documentation
+- [ ] Complete documentation partially
 - [ ] Final testing and presentation
 
 #### Deliverables:
