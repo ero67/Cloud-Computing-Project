@@ -144,47 +144,47 @@ graph TD
 ### Kubernetes Infrastructure 
 ```mermaid
 graph TD
-    subgraph GKE-Cluster[GKE Cluster Info]
-        subgraph Cluster-Details[Cluster Details]
-            CN[Name: default-pool]
-            CV[Version: 1.30.8-gke.1051000]
-            CM[Machine: e2-medium]
-            CN2[Nodes: 2]
-            CAS[Autoscaling: 1-3 nodes per zone]
-        end
-        subgraph Namespace[data-pipeline namespace]
-            D1[Deployment: cloudsql-proxy] --> RS1[ReplicaSet: cloudsql-proxy]
-            D2[Deployment: prefect-server] --> RS2[ReplicaSet: prefect-server]
-            D3[Deployment: prefect-worker] --> RS3[ReplicaSet: prefect-worker]
-            RS1 --> P1[Pod: cloudsql-proxy]
-            RS2 --> P2[Pod: prefect-server]
-            RS3 --> P3[Pod: prefect-worker]
-            S1[Service: cloudsql-proxy\nClusterIP: 34.118.234.121] --> P1
-            S2[Service: prefect-server\nClusterIP: 34.118.230.23] --> P2
-            P3 --> J1[Job: abstract-badger-2d5xr]
-            J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
-        end
-    end
+   subgraph GKE-Cluster[GKE Cluster Info]
+       subgraph Cluster-Details[Cluster Details]
+           CN[Name: default-pool]
+           CV[Version: 1.30.8-gke.1051000]
+           CM[Machine: e2-medium]
+           CN2[Nodes: 2]
+           CAS[Autoscaling: 1-3 nodes per zone]
+       end
+       subgraph Namespace[data-pipeline namespace]
+           D1[Deployment: cloudsql-proxy] --> RS1[ReplicaSet: cloudsql-proxy]
+           D2[Deployment: prefect-server] --> RS2[ReplicaSet: prefect-server]
+           D3[Deployment: prefect-worker] --> RS3[ReplicaSet: prefect-worker]
+           RS1 --> P1[Pod: cloudsql-proxy]
+           RS2 --> P2[Pod: prefect-server]
+           RS3 --> P3[Pod: prefect-worker]
+           S1[Service: cloudsql-proxy] --> P1
+           S2[Service: prefect-server] --> P2
+           P3 --> J1[Job: abstract-badger-2d5xr]
+           J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
+       end
+   end
+   style GKE-Cluster fill:#d4e6f1,stroke:#2c3e50,stroke-width:2px
+   style Cluster-Details fill:#d4e6f1,stroke:#2c3e50,stroke-width:1px
+   style Namespace fill:#eaecee,stroke:#2c3e50,stroke-width:2px
 
-    style GKE-Cluster fill:#f0f8ff,stroke:#333,stroke-width:2px
-    style Cluster-Details fill:#e6f3ff,stroke:#666,stroke-width:1px
-    style Namespace fill:#f5f5f5,stroke:#333,stroke-width:2px
+   %% Darker color scheme
+   classDef clusterInfo fill:#5499c7,stroke:#2c3e50,color:white
+   classDef deployment fill:#2471a3,stroke:#1a5276,color:white
+   classDef replicaset fill:#27ae60,stroke:#196f3d,color:white
+   classDef pod fill:#f4d03f,stroke:#b7950b,color:black
+   classDef service fill:#8e44ad,stroke:#6c3483,color:white
+   classDef job fill:#c0392b,stroke:#922b21,color:white
+   classDef completedPod fill:#595959,stroke:#333333,color:white
 
-    classDef clusterInfo fill:#E3F2FD,stroke:#1565C0,color:black
-    classDef deployment fill:#2196F3,stroke:#1565C0,color:white
-    classDef replicaset fill:#4CAF50,stroke:#2E7D32,color:white
-    classDef pod fill:#FFC107,stroke:#FFA000
-    classDef service fill:#9C27B0,stroke:#6A1B9A,color:white
-    classDef job fill:#FF5722,stroke:#D84315,color:white
-    classDef completedPod fill:#795548,stroke:#4E342E,color:white
-
-    class CN,CV,CM,CN2,CAS clusterInfo
-    class D1,D2,D3 deployment
-    class RS1,RS2,RS3 replicaset
-    class P1,P2,P3 pod
-    class S1,S2 service
-    class J1 job
-    class FP1 completedPod
+   class CN,CV,CM,CN2,CAS clusterInfo
+   class D1,D2,D3 deployment
+   class RS1,RS2,RS3 replicaset
+   class P1,P2,P3 pod
+   class S1,S2 service
+   class J1 job
+   class FP1 completedPod
 ```
 
 ### Continuous Integration/Deployment
