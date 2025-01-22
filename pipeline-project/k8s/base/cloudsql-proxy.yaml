@@ -25,6 +25,23 @@ spec:
           env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /var/secrets/google/key.json
+            - name: CLOUDSQL_CONNECTION_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-credentials
+                  key: connection_name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-credentials
+                  key: password
+            - name: DB_NAME
+              value: "pipeline_db"
           ports:
             - containerPort: 5432
           resources:
