@@ -162,7 +162,7 @@ graph TD
            S1[Service: cloudsql-proxy] --> P1
            S2[Service: prefect-server] --> P2
            P3 --> J1[Job: abstract-badger-2d5xr]
-           J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
+           J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2]
        end
    end
    style GKE-Cluster fill:#e6e6e6,stroke:#2c3e50,stroke-width:2px,color:#2c3e50
