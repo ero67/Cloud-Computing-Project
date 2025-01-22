@@ -142,7 +142,7 @@ graph TD
 
 
 ### Kubernetes Infrastructure 
-
+```mermaid
 graph TD
     subgraph GKE-Cluster[GKE Cluster Info]
         subgraph Cluster-Details[Cluster Details]
