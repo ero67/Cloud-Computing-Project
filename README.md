@@ -165,10 +165,9 @@ graph TD
            J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
        end
    end
-   style GKE-Cluster fill:#e6e6e6,stroke:#2c3e50,stroke-width:2px
-   style Cluster-Details fill:#d4e6f1,stroke:#2c3e50,stroke-width:1px
-   style Namespace fill:#eaecee,stroke:#2c3e50,stroke-width:2px
-
+   style GKE-Cluster fill:#e6e6e6,stroke:#2c3e50,stroke-width:2px,color:#2c3e50
+   style Cluster-Details fill:#d4e6f1,stroke:#2c3e50,stroke-width:1px,color:#2c3e50
+   style Namespace fill:#eaecee,stroke:#2c3e50,stroke-width:2px,color:#2c3e50
    
    classDef clusterInfo fill:#5499c7,stroke:#2c3e50,color:white
    classDef deployment fill:#2471a3,stroke:#1a5276,color:white
@@ -177,7 +176,10 @@ graph TD
    classDef service fill:#8e44ad,stroke:#6c3483,color:white
    classDef job fill:#c0392b,stroke:#922b21,color:white
    classDef completedPod fill:#595959,stroke:#333333,color:white
-
+   
+   %% Darken all arrows
+   linkStyle default stroke:#2c3e50,stroke-width:2px
+   
    class CN,CV,CM,CN2,CAS clusterInfo
    class D1,D2,D3 deployment
    class RS1,RS2,RS3 replicaset
