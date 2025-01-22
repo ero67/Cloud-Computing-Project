@@ -11,7 +11,7 @@ resource "google_sql_database_instance" "instance" {
   project          = var.project_id
 
   settings {
-    tier = "db-f1-micro"  # Smallest instance
+    tier = "db-n1-standard-1"
 
     ip_configuration {
       ipv4_enabled = true
