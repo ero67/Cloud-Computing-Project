@@ -81,7 +81,7 @@ def insert_into_cloud_sql(df, table_name):
     )
 
     try:
-        df.to_sql(table_name, engine, if_exists='replace', index=False)
+        df.to_sql(table_name, engine, if_exists='replace', index=False, chunksize=500)
         print(f"Data inserted into Cloud SQL table {table_name}.")
     except Exception as e:
         print(f"Error inserting data into Cloud SQL: {e}")
