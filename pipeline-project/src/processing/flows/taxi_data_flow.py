@@ -64,8 +64,6 @@ def insert_into_cloud_sql(df, table_name):
     db_pass = os.getenv("DB_PASSWORD")
     db_name = os.getenv("DB_NAME")
 
-    print(instance_name,db_user,db_name)
-
     connector = Connector()
 
     def getconn():
