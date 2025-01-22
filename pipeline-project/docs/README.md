@@ -152,33 +152,24 @@ graph TD
             CN2[Nodes: 2]
             CAS[Autoscaling: 1-3 nodes per zone]
         end
-
         subgraph Namespace[data-pipeline namespace]
-            %% Deployments and their components
             D1[Deployment: cloudsql-proxy] --> RS1[ReplicaSet: cloudsql-proxy]
             D2[Deployment: prefect-server] --> RS2[ReplicaSet: prefect-server]
             D3[Deployment: prefect-worker] --> RS3[ReplicaSet: prefect-worker]
-
-            %% ReplicaSets to Pods
             RS1 --> P1[Pod: cloudsql-proxy]
             RS2 --> P2[Pod: prefect-server]
             RS3 --> P3[Pod: prefect-worker]
-
-            %% Services
             S1[Service: cloudsql-proxy\nClusterIP: 34.118.234.121] --> P1
             S2[Service: prefect-server\nClusterIP: 34.118.230.23] --> P2
-
-            %% Prefect Flow Jobs
             P3 --> J1[Job: abstract-badger-2d5xr]
             J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
         end
     end
 
-    %% Style definitions
     style GKE-Cluster fill:#f0f8ff,stroke:#333,stroke-width:2px
     style Cluster-Details fill:#e6f3ff,stroke:#666,stroke-width:1px
     style Namespace fill:#f5f5f5,stroke:#333,stroke-width:2px
-   
+
     classDef clusterInfo fill:#E3F2FD,stroke:#1565C0,color:black
     classDef deployment fill:#2196F3,stroke:#1565C0,color:white
     classDef replicaset fill:#4CAF50,stroke:#2E7D32,color:white
@@ -186,7 +177,7 @@ graph TD
     classDef service fill:#9C27B0,stroke:#6A1B9A,color:white
     classDef job fill:#FF5722,stroke:#D84315,color:white
     classDef completedPod fill:#795548,stroke:#4E342E,color:white
-   
+
     class CN,CV,CM,CN2,CAS clusterInfo
     class D1,D2,D3 deployment
     class RS1,RS2,RS3 replicaset
