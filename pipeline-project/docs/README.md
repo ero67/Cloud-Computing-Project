@@ -110,7 +110,7 @@ graph TD
 ### Components
 1. **Prefect Server**
    - Orchestrates workflows
-   - Provides UI for monitoring
+   - Provides UI for running and monitoring of the flows
    - Runs in the `data-pipeline` namespace
 
 2. **Prefect Worker**
@@ -143,7 +143,6 @@ graph TD
 
 ### Kubernetes Infrastructure 
 
-```mermaid
 graph TD
     subgraph GKE-Cluster[GKE Cluster Info]
         subgraph Cluster-Details[Cluster Details]
@@ -172,7 +171,6 @@ graph TD
             %% Prefect Flow Jobs
             P3 --> J1[Job: abstract-badger-2d5xr]
             J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
-
         end
     end
 
@@ -180,7 +178,7 @@ graph TD
     style GKE-Cluster fill:#f0f8ff,stroke:#333,stroke-width:2px
     style Cluster-Details fill:#e6f3ff,stroke:#666,stroke-width:1px
     style Namespace fill:#f5f5f5,stroke:#333,stroke-width:2px
-    
+   
     classDef clusterInfo fill:#E3F2FD,stroke:#1565C0,color:black
     classDef deployment fill:#2196F3,stroke:#1565C0,color:white
     classDef replicaset fill:#4CAF50,stroke:#2E7D32,color:white
@@ -188,14 +186,14 @@ graph TD
     classDef service fill:#9C27B0,stroke:#6A1B9A,color:white
     classDef job fill:#FF5722,stroke:#D84315,color:white
     classDef completedPod fill:#795548,stroke:#4E342E,color:white
-    
-    class CN,CV,CM,CN2,CIP,CAS,COS clusterInfo
+   
+    class CN,CV,CM,CN2,CAS clusterInfo
     class D1,D2,D3 deployment
     class RS1,RS2,RS3 replicaset
     class P1,P2,P3 pod
     class S1,S2 service
     class J1 job
-    class FP1,CT completedPod
+    class FP1 completedPod
 
 ### Continuous Integration/Deployment
 The project uses GitHub Actions for:
