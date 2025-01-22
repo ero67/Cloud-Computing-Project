@@ -165,11 +165,11 @@ graph TD
            J1 --> FP1[Pod: abstract-badger-2d5xr-b4fg2\nStatus: Completed]
        end
    end
-   style GKE-Cluster fill:#d4e6f1,stroke:#2c3e50,stroke-width:2px
+   style GKE-Cluster fill:#e6e6e6,stroke:#2c3e50,stroke-width:2px
    style Cluster-Details fill:#d4e6f1,stroke:#2c3e50,stroke-width:1px
    style Namespace fill:#eaecee,stroke:#2c3e50,stroke-width:2px
 
-   %% Darker color scheme
+   
    classDef clusterInfo fill:#5499c7,stroke:#2c3e50,color:white
    classDef deployment fill:#2471a3,stroke:#1a5276,color:white
    classDef replicaset fill:#27ae60,stroke:#196f3d,color:white
