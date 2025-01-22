@@ -81,11 +81,11 @@ def insert_into_cloud_sql(df, table_name):
     )
 
     try:
-        df.to_sql(table_name, engine, if_exists='replace', index=False)
+        df.to_sql(table_name, engine, if_exists='replace', index=False, chunksize=2000)
         print(f"Data inserted into Cloud SQL table {table_name}.")
     except Exception as e:
         print(f"Error inserting data into Cloud SQL: {e}")
-    
+    \
     return table_name
 
 @task(name="load_parquet_to_bigquery")
@@ -149,7 +149,7 @@ def NY_Taxi_Data_Flow():
     
     gcs_uri = upload_to_gcs(bucket_name, parquet_file, destination_blob_name_processed)
 
-    insert_into_cloud_sql(df_transformed, target_table)
+    # insert_into_cloud_sql(df_transformed, target_table)
 
     load_parquet_to_bigquery(gcs_uri, project_id, dataset_id, table_id)
 
