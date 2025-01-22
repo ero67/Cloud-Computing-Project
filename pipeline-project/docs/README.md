@@ -185,6 +185,7 @@ graph TD
     class S1,S2 service
     class J1 job
     class FP1 completedPod
+```
 
 ### Continuous Integration/Deployment
 The project uses GitHub Actions for:
